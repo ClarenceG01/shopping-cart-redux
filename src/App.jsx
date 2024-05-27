@@ -7,11 +7,13 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <Navbar />
-      <Shop />
+    <main>
+      <div className="nav-shop">
+        <Navbar />
+        <Shop />
+      </div>
       <Cart />
-    </>
+    </main>
   );
 }
 

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addProductToCart } from "../redux/productsSlice";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
   const getProducts = async () => {
     await axios
       .get("https://fakestoreapi.com/products")
@@ -22,7 +25,20 @@ const Shop = () => {
               <p>{product.title}</p>
               <p>{product.price}</p>
             </div>
-            <button>Add to cart</button>
+            <button
+              onClick={() =>
+                dispatch(
+                  addProductToCart({
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    image: product.image,
+                  })
+                )
+              }
+            >
+              Add to cart
+            </button>
           </div>
         </article>
       ))}
